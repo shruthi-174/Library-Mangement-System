@@ -1,0 +1,59 @@
+# LIBRARY MANAGEMENT SYSTEM
+
+class Library:
+    def __init__(self,list_of_books,library_name):
+        self.lbook=list_of_books
+        self.lname=library_name
+        self.lendDict={}
+
+    def display_book(self):
+        print(f"The Books present in {self.lname} are:")
+        for book in self.lbook:
+            print(book)
+
+    def lend_book(self,user,book):
+        if book not in self.lendDict.keys():
+            self.lendDict.update({book:user})
+            print("Lender-Book database dictionary has been updated. You can take the book now!!!")
+        else:
+            print(f"Book is already being used by {self.lendDict[book]}")
+
+    def add_book(self,book):
+        self.lbook.append(book)
+        print("Book has been added to the book list")
+
+    def return_book(self,book):
+        self.lendDict.pop(book)
+
+if __name__ == '__main__':
+   lobject=Library(["Second chance in Love","Sherlock Holmes","Harry Potter","Python","C++ Basics"],"Central Library")
+
+
+while(1):
+    print(f"!!! Welcome to the {lobject.lname} !!!")
+    choice=int(input("Choose the method you want to execute: \nPress 1 for Display Book \n2 for Lend Book \n3 for Add book \n4 for Return Book: "))
+    if choice==1:
+        lobject.display_book()
+    elif choice==2:
+        book_name=input("enter  the name of the book you want to lend: ")
+        user_name=input("enter your name")
+        lobject.lend_book(user_name,book_name)
+    elif choice == 3:
+        book_name=input("enter  the name of the book you want to add: ")
+        lobject.add_book(book_name)
+    elif choice==4:
+        book_name=input("enter  the name of the book you want to return: ")
+        lobject.return_book(book_name)
+    else:
+        print("Enter the valid input")
+
+    print("Press q to quit and c to continue")
+    choice2=""
+    while(choice2!="q" and choice2!="c"):
+        choice2 = input()
+        if choice2=="q":
+            exit()
+        elif choice2=="c":
+            continue
+
+
